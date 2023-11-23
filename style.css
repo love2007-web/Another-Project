@@ -128,11 +128,12 @@
 }
 .btn{
     position: relative;
-    width: 100%;
-    background-color: blue;
 }
 .btn:hover{
-    background-color: red;
+    background-color: #e3e3e3;
+}
+.btn:focus{
+    outline: 1px solid #005bd3;
 }
 .notifdropcontent {
   position: absolute;
@@ -164,7 +165,20 @@
   margin-right: 5px;
   display: flex;
   align-items: center;
+  width: 100%;
+  padding: 10px;
 }
+ .bottom button{
+    background-color: transparent;
+    border: 0;
+    color: black;
+    padding: 3px;
+    border-radius: 10px;
+    margin-right: 5px;
+    text-align: left;
+    width: 100%;
+    padding: 10px;
+ }
 .notiftop{
     display: flex;
     justify-content: space-between;
