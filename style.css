@@ -1,117 +1,164 @@
-*{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
-.navbar{
-    background-color: black;
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 15px;
+.navbar {
+  background-color: black;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 15px;
 }
-.mobile{
-    display: none;
+.mobile {
+  display: none;
+}
+.mobile svg {
+  width: 30px;
+  color: #e3e3e3;
 }
 .search-container {
-    position: relative;
+  position: relative;
 }
 
 .search-container input[type="search"] {
-    background-color: #303030;
-    padding-left: 30px;
-    width: 400px;
-    height: 40px;
-    border: 1px solid #616161;
-    border-radius: 10px;
+  background-color: #303030;
+  padding-left: 30px;
+  width: 400px;
+  height: 40px;
+  border: 1px solid #616161;
+  border-radius: 10px;
 }
-.search-container input::placeholder{
-    color: #E3E3E3;
+.search-container input::placeholder {
+  color: #e3e3e3;
 }
-.search-container input:hover{
-    border: 1px solid #E3E3E3;
-    transition: all 0.3s ease;
+.search-container input:hover {
+  border: 1px solid #e3e3e3;
+  transition: all 0.3s ease;
 }
-.search-container input:focus{
-    border: 1px solid #E3E3E3;
-    outline: 1px solid white;
+.search-container input:focus {
+  border: 1px solid #e3e3e3;
+  outline: 1px solid white;
 }
 
 .search-icon {
-    width: 15px;
-    position: absolute;
-    left: 10px;
-    top: 50%;
-    color: #616161;
-    transform: translateY(-50%);
+  width: 15px;
+  position: absolute;
+  left: 10px;
+  top: 50%;
+  color: #616161;
+  transform: translateY(-50%);
 }
-.end{
+.end {
+  display: flex;
+  align-items: center;
+}
+.navbtn1 svg {
+  width: 30px;
+}
+.navbtn1 {
+  background-color: #322f33;
+  border: transparent;
+  border-radius: 10px;
+  margin-right: 7px;
+  color: #e3e3e3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+.navbtn1:focus {
+  outline: 3px solid #005bd3;
+}
+.navbtn1:hover {
+  background-color: #616161;
+  transition: all 0.3s ease;
+}
+.navbtn2 {
+  background-color: #322f33;
+  border: 0;
+  color: #e3e3e3;
+  display: flex;
+  align-items: center;
+  padding: 4px;
+  border-radius: 10px;
+}
+.navbtn2:focus {
+  outline: 3px solid #005bd3;
+}
+.navbtn2:hover {
+  background-color: #616161;
+  transition: all 0.3s ease;
+}
+.navbtn2 p {
+  margin-left: 5px;
+  margin-right: 5px;
+  line-height: 140%;
+}
+.dc {
+  background-color: rgb(22, 197, 22);
+  color: black;
+  padding: 10px;
+  border-radius: 10px;
+  align-items: center;
+  margin-right: 10px;
+  /* margin-left: 5px; */
+}
+.notifdrop {
+  position: relative;
+}
+.notifdropcontent {
+  position: absolute;
+  top: 60px;
+  right: 0px;
+  color: black;
+  background-color: red;
+  padding: 9px;
+  display: none;
+  width: 300px;
+  height: auto;
+  border-radius: 10px;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1),
+    0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+.top button {
+  background-color: transparent;
+  border: 0;
+  color: black;
+  padding: 5px;
+  border-radius: 10px;
+  margin-right: 5px;
+  display: flex;
+  align-items: center;
+}
+.notiftop{
     display: flex;
-    align-items: center;
-
+    justify-content: space-between;
 }
-.navbtn1 svg{
-    width: 30px;
-
+.svg {
+  width: 20px;
+  margin-right: 10px;
 }
-.navbtn1{
-    background-color: #322f33;
-    border: 0;
-    border-radius: 10px;
-    margin-right: 7px;
-    color: #E3E3E3;
-    padding-left: 5px;
-    padding-right: 5px;
+.notifdrop .navbtn1:focus + .notifdropcontent {
+  display: block;
+  transition: all 0.3s ease; /* Add transition property */
 }
-.navbtn1:hover{
-    background-color: #616161;
-    transition: all 0.3s ease;
-}
-.navbtn1:focus{
-    border: 2px solid #005BD3;
-    transition: all 0.3s ease;
-}
-.navbtn2{
-    background-color: #322F33;
-    border: 0;
-    color: #E3E3E3;
-    display: flex;
-    align-items: center;
-    padding: 4px;
-    border-radius: 10px;
-}
-.navbtn2:hover{
-    background-color: #616161;
-    transition: all 0.3s ease;
-}
-.navbtn2 p{
-    margin-left: 5px;
-    margin-right: 5px;
-}
-.navbtn2 div{
-    background-color: rgb(22, 197, 22);
-    color: black;
-    padding: 10px;
-    border-radius: 10px;
-    align-items: center;
-    /* margin-left: 5px; */
-}
-
-
 
 @media screen and (max-width: 768px) {
   /* Your CSS for mobile view goes here */
-.normal{
+  .normal {
     display: none;
-}
-.mobile{
+  }
+  .mobile {
     display: block;
-}
-.navbtn2, .navbtn1{
+  }
+  .navbtn2,
+  .navbtn1 {
     background-color: transparent;
-}
-.navbtn2 p{
+  }
+  .navbtn2 p {
     display: none;
-}
+  }
+  .search-container input[type="search"] {
+    width: 190px;
+  }
 }
