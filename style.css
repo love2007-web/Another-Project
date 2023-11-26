@@ -215,6 +215,16 @@
   transition: all 0.3s ease; /* Add transition property */
 }
 
+.body{
+  background-color: red;
+  width: 100%;
+  height: 89vh;
+}
+.mainwrapper{
+  display: flex;
+  justify-content: center;
+}
+
 @media screen and (max-width: 768px) {
   /* Your CSS for mobile view goes here */
   .normal {
