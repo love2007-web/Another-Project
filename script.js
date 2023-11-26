@@ -52,3 +52,105 @@ const resetAllMainChildBox = () => {
     }
   });
 };
+
+const addActiveToMaincChildBox = (eventTarget) => {
+  const childTextBox = eventTarget.querySelector(".main__list__sub");
+  const childImageBox = eventTarget.querySelector(".main__list__image");
+  eventTarget.classList.add("bolden__header");
+  childTextBox.classList.remove("item__hidden");
+  childImageBox.classList.remove("item__hidden");
+
+  //add aria to recent clicked box
+  eventTarget.querySelector(".main__list__item__header").ariaExpanded = true;
+  eventTarget.querySelector(".main__list__sub").ariaHidden = false;
+  eventTarget.querySelector(".main__list__item__button").tabIndex = "0";
+  childTextBox.focus();
+  if (eventTarget.querySelector(".import__button")) {
+    eventTarget.querySelector(".import__button").tabIndex = "0";
+  }
+};
+
+const handleToCheckBox = (parentItem) => {
+  const aria__checked = parentItem.getAttribute("aria-checked") === "true";
+  const unChecked = parentItem.querySelector(".checkbox__svg");
+  const loading = parentItem.querySelector(".svg__rotate__checkbox");
+  const checked = parentItem.querySelector(".done_svg");
+
+  if (!aria__checked) {
+    parentItem.setAttribute("aria-checked", true);
+    unChecked.classList.add("item__hidden");
+    loading.classList.remove("item__hidden");
+    setTimeout(() => {
+      loading.classList.add("item__hidden");
+      checked.classList.remove("item__hidden");
+      progressBar.value = progressBar.value + 1;
+      progressBar.textContent = `${progressBar.value} out of 5 checkbox completed`;
+      progressCompleted.textContent = `${progressBar.value} / 5 completed`;
+
+      // work on moving active state since it is checked..move active state to the next uncompleted one
+      const mainParentItemTag = +parentItem.closest(".main__list__child__box")
+        .dataset.tag;
+      onCompletedCheckBox(mainParentItemTag);
+    }, 300);
+  } else {
+    parentItem.setAttribute("aria-checked", false);
+    checked.classList.add("item__hidden");
+    loading.classList.remove("item__hidden");
+    setTimeout(() => {
+      loading.classList.add("item__hidden");
+      unChecked.classList.remove("item__hidden");
+      progressBar.value = progressBar.value - 1;
+      progressBar.textContent = `${progressBar.value} out of 5 checkbox completed`;
+      progressCompleted.textContent = `${progressBar.value} / 5 completed`;
+
+      // auto move
+      const mainParentItemTag = +parentItem.closest(".main__list__child__box")
+        .dataset.tag;
+      onNotCompletedChecked(mainParentItemTag);
+    }, 300);
+  }
+};
+
+const onCompletedCheckBox = (parent_data_tag) => {
+  let activeMain__BoxTracker = document.querySelector(".bolden__header");
+  if (
+    inActive[0] &&
+    inActive[1] &&
+    parent_data_tag === Number(activeMain__BoxTracker.dataset.tag)
+  ) {
+    inActive = inActive.filter(
+      (num) => num !== Number(activeMain__BoxTracker.dataset.tag)
+    );
+    const nextParentTag = document.querySelector(`[data-tag="${inActive[0]}"]`);
+    resetAllMainChildBox();
+    addActiveToMaincChildBox(nextParentTag);
+    nextParentTag.querySelector(".checkbox__box").focus();
+  } else {
+    // check if active box is equal to the checkbox clicked
+    inActive = inActive.filter((num) => num !== Number(parent_data_tag));
+    focusOnTopPrioprity();
+  }
+};
+
+// add the deleted tag to the inactive state
+const onNotCompletedChecked = (value) => {
+  inActive = [...inActive, value].sort();
+};
+
+// focus on the first mainchildBox unchecked boxes
+const focusOnTopPrioprity = (state = false) => {
+  if (inActive.length > 0) {
+    // focus on the top priority checkbox
+    document
+      .querySelector(`[data-tag="${inActive[0]}"]`)
+      .querySelector(".checkbox__box")
+      .focus();
+  }
+  // if you still wan to focus on the first item
+  if (state) {
+    document
+      .querySelector(`[data-tag="1"]`)
+      .querySelector(".checkbox__box")
+      .focus();
+  }
+};
