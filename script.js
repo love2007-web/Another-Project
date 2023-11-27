@@ -32,10 +32,6 @@ mainExitBtn.addEventListener("click", (e) => {
     }, 100);
   }
 });
-
-// -------- usage for child main box -----------------------
-// get all button on main list item
-// const allMainChild
 const resetAllMainChildBox = () => {
   [...allMainChildBox].forEach((parentItem) => {
     parentItem.classList.remove("bolden__header");
@@ -43,7 +39,6 @@ const resetAllMainChildBox = () => {
     parentItem
       .querySelector(".main__list__image")
       .classList.add("item__hidden");
-    // reset all aria tag in it
     parentItem.querySelector(".main__list__item__header").ariaExpanded = false;
     parentItem.querySelector(".main__list__sub").ariaHidden = true;
     parentItem.querySelector(".main__list__item__button").tabIndex = "-1";
@@ -59,8 +54,6 @@ const addActiveToMaincChildBox = (eventTarget) => {
   eventTarget.classList.add("bolden__header");
   childTextBox.classList.remove("item__hidden");
   childImageBox.classList.remove("item__hidden");
-
-  //add aria to recent clicked box
   eventTarget.querySelector(".main__list__item__header").ariaExpanded = true;
   eventTarget.querySelector(".main__list__sub").ariaHidden = false;
   eventTarget.querySelector(".main__list__item__button").tabIndex = "0";
@@ -86,8 +79,6 @@ const handleToCheckBox = (parentItem) => {
       progressBar.value = progressBar.value + 1;
       progressBar.textContent = `${progressBar.value} out of 5 checkbox completed`;
       progressCompleted.textContent = `${progressBar.value} / 5 completed`;
-
-      // work on moving active state since it is checked..move active state to the next uncompleted one
       const mainParentItemTag = +parentItem.closest(".main__list__child__box")
         .dataset.tag;
       onCompletedCheckBox(mainParentItemTag);
@@ -102,8 +93,6 @@ const handleToCheckBox = (parentItem) => {
       progressBar.value = progressBar.value - 1;
       progressBar.textContent = `${progressBar.value} out of 5 checkbox completed`;
       progressCompleted.textContent = `${progressBar.value} / 5 completed`;
-
-      // auto move
       const mainParentItemTag = +parentItem.closest(".main__list__child__box")
         .dataset.tag;
       onNotCompletedChecked(mainParentItemTag);
@@ -126,27 +115,22 @@ const onCompletedCheckBox = (parent_data_tag) => {
     addActiveToMaincChildBox(nextParentTag);
     nextParentTag.querySelector(".checkbox__box").focus();
   } else {
-    // check if active box is equal to the checkbox clicked
     inActive = inActive.filter((num) => num !== Number(parent_data_tag));
     focusOnTopPrioprity();
   }
 };
 
-// add the deleted tag to the inactive state
 const onNotCompletedChecked = (value) => {
   inActive = [...inActive, value].sort();
 };
 
-// focus on the first mainchildBox unchecked boxes
 const focusOnTopPrioprity = (state = false) => {
   if (inActive.length > 0) {
-    // focus on the top priority checkbox
     document
       .querySelector(`[data-tag="${inActive[0]}"]`)
       .querySelector(".checkbox__box")
       .focus();
   }
-  // if you still wan to focus on the first item
   if (state) {
     document
       .querySelector(`[data-tag="1"]`)
