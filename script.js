@@ -193,7 +193,7 @@ const rightScrollForward = () => {
 
 
 window.addEventListener("keydown", (e) => {
-  if (e.code === "Space" && e.target.className === "checkbox__box") {
+  if (e.code === "Enter" && e.target.className === "checkbox__box") {
     handleToCheckBox(e.target);
   }
   if (

@@ -656,6 +656,7 @@ body {
 .checkbox__box {
   height: 1.5rem;
   width: 1.5rem;
+  cursor: pointer;
 }
 
 .main__list__sub {
